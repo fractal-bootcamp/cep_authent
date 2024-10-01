@@ -29,7 +29,7 @@ const PORT = process.env.PORT || 3000;
 const users = {
     "1": {
         name: "BOBBY",
-        password: "bobbysworld",
+        password: "123",
     },
     "2": {
         name: "BOB",
@@ -44,11 +44,13 @@ const generateToken = async (id: string) => {
 
 app.post("/login", async (req, res) => {
     //destructing the json body and parsing out name and password
+    console.log("TRIGGERED")
+    console.log(req.body) //is this supposed to be name/pss norman 123?
     const { name, password } = req.body;
 
     // checking if user and password have been provided as fields
     if (!name || !password) {
-        res.status(401).json({ message: "Unauthorized" });
+        res.status(401).json({ message: "MISSINGFIELD" }); //correct
         return;
     }
     // Object.entries(users) creates array from object so that we can use .find 
